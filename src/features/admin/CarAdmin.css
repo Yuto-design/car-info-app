@@ -37,23 +37,6 @@
   font-weight: 600;
 }
 
-.car-admin-autofill {
-  display: flex;
-  gap: 0.75rem;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  padding: 0.75rem;
-  border: 1px dashed rgba(255, 255, 255, 0.12);
-  border-radius: 12px;
-  margin-bottom: 1rem;
-}
-
-.car-admin-error {
-  margin: 0;
-  color: #ff8a8a;
-  font-size: 0.9rem;
-}
-
 .car-admin-form {
   margin-top: 0.5rem;
 }

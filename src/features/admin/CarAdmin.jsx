@@ -8,7 +8,6 @@ import {
   resetCarsToSeed,
   updateCar,
 } from '../../data/cars';
-import { fetchCarDraftByName } from '../../data/api';
 import './CarAdmin.css';
 
 const emptyForm = {
@@ -41,9 +40,6 @@ function CarAdmin() {
   const [cars, setCars] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState(emptyForm);
-
-  const [autoFillName, setAutoFillName] = useState('');
-  const [autoFillStatus, setAutoFillStatus] = useState({ loading: false, error: '' });
 
   const isEditing = useMemo(() => Boolean(editingId), [editingId]);
 
@@ -117,31 +113,11 @@ function CarAdmin() {
     cancelEdit();
   };
 
-  const onAutoFill = async () => {
-    setAutoFillStatus({ loading: true, error: '' });
-    try {
-      const draft = await fetchCarDraftByName(autoFillName);
-      setForm((prev) => ({
-        ...prev,
-        ...draft,
-        // 画像が空のときは上書きしない
-        image: draft.image ?? prev.image,
-      }));
-    } catch (err) {
-      setAutoFillStatus({
-        loading: false,
-        error: err instanceof Error ? err.message : '自動入力に失敗しました',
-      });
-      return;
-    }
-    setAutoFillStatus({ loading: false, error: '' });
-  };
-
   return (
     <div className="car-admin">
       <div className="car-admin-header">
         <p className="car-admin-desc">
-          車種情報を手入力で追加・編集できます。将来的に「車名→AIで補完」に差し替える前提で、自動入力ボタンも用意しています。
+          車種情報を手入力で追加・編集できます。
         </p>
         <div className="car-admin-actions">
           <Button as={Link} to="/list" variant="secondary">車一覧へ</Button>
@@ -151,29 +127,6 @@ function CarAdmin() {
 
       <section className="car-admin-card">
         <h2 className="car-admin-section-title">{isEditing ? '車種を編集' : '車種を追加'}</h2>
-
-        <div className="car-admin-autofill">
-          <label className="car-admin-label">
-            <span className="car-admin-label-text">車名（自動入力用）</span>
-            <input
-              className="car-admin-input"
-              value={autoFillName}
-              onChange={(e) => setAutoFillName(e.target.value)}
-              placeholder="例: プリウス"
-            />
-          </label>
-          <Button
-            type="button"
-            variant="primary"
-            onClick={onAutoFill}
-            disabled={autoFillStatus.loading || !autoFillName.trim()}
-          >
-            {autoFillStatus.loading ? '補完中…' : 'AIで補完（暫定）'}
-          </Button>
-          {autoFillStatus.error && (
-            <p className="car-admin-error" role="alert">{autoFillStatus.error}</p>
-          )}
-        </div>
 
         <form className="car-admin-form" onSubmit={onSubmit}>
           <div className="car-admin-grid">
