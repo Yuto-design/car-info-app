@@ -1,20 +1,25 @@
+import { Link, useLocation } from 'react-router-dom';
 import './Layout.css';
 
 function Layout({ children, title }) {
+  const location = useLocation();
+  const isActive = (path) => (path === '/' ? location.pathname === '/' : location.pathname.startsWith(path));
+
   return (
     <div className="layout">
       <header className="layout-header">
-        <a href="/" className="layout-brand">
+        <Link to="/" className="layout-brand">
           <span className="layout-brand-icon">
               <i className="fa-solid fa-car"></i>
           </span>
           <span className="layout-brand-text">Car Info</span>
-        </a>
+        </Link>
         <nav className="layout-nav">
-          <a href="/" className="layout-nav-link layout-nav-link--active">ホーム</a>
-          <a href="/list" className="layout-nav-link">車一覧</a>
-          <a href="/favorites" className="layout-nav-link">お気に入り</a>
-          <a href="/comparison" className="layout-nav-link">比較</a>
+          <Link to="/" className={`layout-nav-link ${isActive('/') && location.pathname === '/' ? 'layout-nav-link--active' : ''}`}>ホーム</Link>
+          <Link to="/list" className={`layout-nav-link ${isActive('/list') ? 'layout-nav-link--active' : ''}`}>車一覧</Link>
+          <Link to="/admin" className={`layout-nav-link ${isActive('/admin') ? 'layout-nav-link--active' : ''}`}>登録</Link>
+          <Link to="/favorites" className={`layout-nav-link ${isActive('/favorites') ? 'layout-nav-link--active' : ''}`}>お気に入り</Link>
+          <Link to="/comparison" className={`layout-nav-link ${isActive('/comparison') ? 'layout-nav-link--active' : ''}`}>比較</Link>
         </nav>
       </header>
       <main className="layout-main">

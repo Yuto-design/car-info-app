@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { getFeaturedCars } from '../../data/cars';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
@@ -18,7 +19,7 @@ function Home() {
             国内の人気車種のスペック・価格・燃費をまとめて比較。<br />
             お気に入り登録や並べ比べで、選びやすく。
           </p>
-          <Button as="a" href="/list" variant="primary" className="home-hero-cta">
+          <Button as={Link} to="/list" variant="primary" className="home-hero-cta">
             車一覧を見る
           </Button>
         </div>
@@ -32,7 +33,7 @@ function Home() {
       <section className="home-quick">
         <h3 className="home-section-title">Menu</h3>
         <div className="home-quick-grid">
-          <Card href="/list" className="card--link home-quick-card">
+          <Card as={Link} to="/list" className="card--link home-quick-card">
             <span className="home-quick-icon">
                 <i className="fa-solid fa-list"></i>
             </span>
@@ -41,7 +42,7 @@ function Home() {
               <p className="card-meta">条件で絞り込んで車種を探す</p>
             </div>
           </Card>
-          <Card href="/favorites" className="card--link home-quick-card">
+          <Card as={Link} to="/favorites" className="card--link home-quick-card">
             <span className="home-quick-icon">
               <i className="fa-solid fa-heart"></i>
             </span>
@@ -50,7 +51,7 @@ function Home() {
               <p className="card-meta">気になる車を保存して比較</p>
             </div>
           </Card>
-          <Card href="/comparison" className="card--link home-quick-card">
+          <Card as={Link} to="/comparison" className="card--link home-quick-card">
             <span className="home-quick-icon">
               <i className="fa-solid fa-scale-balanced"></i>
             </span>
@@ -67,7 +68,7 @@ function Home() {
         <p className="home-section-desc">人気の車種をピックアップしました。</p>
         <div className="home-featured-grid">
           {featuredCars.map((car) => (
-            <Card key={car.id} href={`/car/${car.id}`} className="card--car">
+            <Card key={car.id} as={Link} to={`/car/${car.id}`} className="card--car">
               <img
                 src={car.image}
                 alt={car.name}
@@ -83,7 +84,7 @@ function Home() {
           ))}
         </div>
         <div className="home-featured-actions">
-          <Button as="a" href="/list" variant="secondary">
+          <Button as={Link} to="/list" variant="secondary">
             すべての車種を見る
           </Button>
         </div>

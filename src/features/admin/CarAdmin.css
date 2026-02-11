@@ -1,0 +1,162 @@
+.car-admin {
+  padding-bottom: 2rem;
+}
+
+.car-admin-header {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.car-admin-desc {
+  margin: 0;
+  color: var(--color-text-muted, #a0a0a0);
+  max-width: 760px;
+}
+
+.car-admin-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.car-admin-card {
+  padding: 1rem;
+  background: var(--color-card-bg, rgba(255, 255, 255, 0.04));
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.08));
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+.car-admin-section-title {
+  margin: 0 0 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.car-admin-autofill {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  padding: 0.75rem;
+  border: 1px dashed rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+
+.car-admin-error {
+  margin: 0;
+  color: #ff8a8a;
+  font-size: 0.9rem;
+}
+
+.car-admin-form {
+  margin-top: 0.5rem;
+}
+
+.car-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.car-admin-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.car-admin-label--wide {
+  grid-column: 1 / -1;
+}
+
+.car-admin-label-text {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text-muted, #a0a0a0);
+}
+
+.car-admin-input,
+.car-admin-textarea {
+  padding: 0.55rem 0.75rem;
+  font-size: 0.95rem;
+  color: var(--color-text, #f5f5f5);
+  background: var(--color-bg-alt, #1a1a1e);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+
+.car-admin-input:focus,
+.car-admin-textarea:focus {
+  outline: none;
+  border-color: var(--color-accent, #e85d04);
+}
+
+.car-admin-textarea {
+  resize: vertical;
+}
+
+.car-admin-form-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.car-admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.car-admin-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.car-admin-row-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.car-admin-row-title {
+  font-weight: 600;
+}
+
+.car-admin-row-meta {
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #a0a0a0);
+}
+
+.car-admin-row-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+}
+
+.car-admin-empty {
+  margin: 0;
+  color: var(--color-text-muted, #a0a0a0);
+  padding: 0.75rem;
+  text-align: center;
+}
+
+@media (max-width: 720px) {
+  .car-admin-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

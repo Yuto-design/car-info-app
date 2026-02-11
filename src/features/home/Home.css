@@ -2,7 +2,6 @@
   padding-bottom: 2rem;
 }
 
-/* Hero */
 .home-hero {
   display: flex;
   align-items: center;
@@ -72,7 +71,6 @@
   display: block;
 }
 
-/* Quick links */
 .home-quick {
   margin-bottom: 2.5rem;
 }
@@ -116,7 +114,6 @@
   display: block;
 }
 
-/* Featured cars */
 .home-featured {
   margin-bottom: 1rem;
 }
