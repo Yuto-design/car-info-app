@@ -105,7 +105,6 @@ function CarAdmin() {
   };
 
   const onDelete = (id) => {
-    // eslint-disable-next-line no-alert
     const ok = window.confirm('この車種を削除しますか？');
     if (!ok) return;
     deleteCar(id);
@@ -114,7 +113,6 @@ function CarAdmin() {
   };
 
   const onResetSeed = () => {
-    // eslint-disable-next-line no-alert
     const ok = window.confirm('初期データに戻します（localStorage を上書きします）。よろしいですか？');
     if (!ok) return;
     resetCarsToSeed();
