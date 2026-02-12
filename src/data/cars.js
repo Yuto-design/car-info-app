@@ -47,12 +47,30 @@ export const getAllCars = () => readAll();
 
 export const getCarById = (id) => readAll().find((car) => car.id === id);
 
+/** スラッグまたはIDで車を取得（URL用）。スラッグを優先して検索し、なければIDで検索 */
+export const getCarBySlugOrId = (slugOrId) => {
+    const all = readAll();
+    const bySlug = all.find((car) => car.slug === slugOrId);
+    if (bySlug) return bySlug;
+    return all.find((car) => car.id === slugOrId) ?? null;
+};
+
 export const getFeaturedCars = () => readAll().slice(0, 4);
+
+/** 名前からURL用スラッグを生成（英数字・ハイフンのみ）。空の場合は undefined */
+function slugFromName(name) {
+    if (!name || typeof name !== 'string') return undefined;
+    const s = name.trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+    return s || undefined;
+}
 
 export function addCar(input) {
     const all = readAll();
+    const rawSlug = input?.slug != null && String(input.slug).trim() !== '' ? String(input.slug).trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') : undefined;
+    const slug = rawSlug || slugFromName(input?.name);
     const next = {
         id: input?.id ?? generateId(),
+        slug: slug || undefined,
         name: input?.name ?? '',
         maker: input?.maker ?? '',
         segment: input?.segment ?? '',
@@ -72,7 +90,12 @@ export function addCar(input) {
 
 export function updateCar(id, patch) {
     const all = readAll();
-    const nextCars = all.map((car) => (car.id === id ? { ...car, ...patch } : car));
+    const slugNorm = patch.slug != null && String(patch.slug).trim() !== ''
+        ? String(patch.slug).trim().toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+        : undefined;
+    const patchWithSlug = { ...patch };
+    if ('slug' in patch) patchWithSlug.slug = slugNorm ?? undefined;
+    const nextCars = all.map((car) => (car.id === id ? { ...car, ...patchWithSlug } : car));
     writeAll(nextCars);
     return nextCars.find((c) => c.id === id) ?? null;
 }

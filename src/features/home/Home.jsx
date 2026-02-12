@@ -68,7 +68,7 @@ function Home() {
         <p className="home-section-desc">人気の車種をピックアップしました。</p>
         <div className="home-featured-grid">
           {featuredCars.map((car) => (
-            <Card key={car.id} as={Link} to={`/car/${car.id}`} className="card--car">
+            <Card key={car.id} as={Link} to={`/car/${car.slug || car.id}`} className="card--car">
               <img
                 src={car.image}
                 alt={car.name}

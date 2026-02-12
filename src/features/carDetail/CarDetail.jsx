@@ -1,12 +1,12 @@
 import { useParams, Link } from 'react-router-dom';
-import { getCarById } from '../../data/cars';
+import { getCarBySlugOrId } from '../../data/cars';
 import Button from '../../components/Button';
 import SpecTable from './SpecTable';
 import './CarDetail.css';
 
 function CarDetail() {
-  const { id } = useParams();
-  const car = getCarById(id);
+  const { id: slugOrId } = useParams();
+  const car = getCarBySlugOrId(slugOrId);
 
   if (!car) {
     return (
