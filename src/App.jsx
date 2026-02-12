@@ -3,6 +3,7 @@ import Layout from './components/Layout';
 import Home from './features/home/Home';
 import CarList from './features/carList/CarList';
 import CarAdmin from './features/admin/CarAdmin';
+import CarDetail from './features/carDetail/CarDetail';
 import './App.css';
 
 function AppContent() {
@@ -19,6 +20,7 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/list" element={<CarList />} />
+        <Route path="/car/:id" element={<CarDetail />} />
         <Route path="/admin" element={<CarAdmin />} />
       </Routes>
     </Layout>

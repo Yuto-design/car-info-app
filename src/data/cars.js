@@ -16,6 +16,9 @@ export const cars = [
         fuelType: 'ハイブリッド',
         image: 'https://placehold.co/400x240/1a1a2e/eee?text=Prius',
         description: '世界で愛されるハイブリッドの代表格。燃費と実用性を両立。',
+        lengthMm: 4520,
+        widthMm: 1780,
+        heightMm: 1470,
     },
     {
         id: '2',
@@ -28,6 +31,9 @@ export const cars = [
         fuelType: 'ハイブリッド',
         image: 'https://placehold.co/400x240/1a1a2e/eee?text=Note',
         description: 'コンパクトで燃費の良い日産のハイブリッド車。',
+        lengthMm: 4045,
+        widthMm: 1695,
+        heightMm: 1520,
     },
     {
         id: '3',
@@ -40,6 +46,9 @@ export const cars = [
         fuelType: 'ガソリン',
         image: 'https://placehold.co/400x240/1a1a2e/eee?text=Fit',
         description: '使い勝手の良いコンパクトカー。',
+        lengthMm: 3995,
+        widthMm: 1695,
+        heightMm: 1535,
     },
     {
         id: '4',
@@ -52,6 +61,9 @@ export const cars = [
         fuelType: 'ハイブリッド',
         image: 'https://placehold.co/400x240/1a1a2e/eee?text=RAV4',
         description: '人気のコンパクトSUV。広い室内と燃費を両立。',
+        lengthMm: 4600,
+        widthMm: 1855,
+        heightMm: 1685,
     },
 ];
 
@@ -117,6 +129,9 @@ export function addCar(input) {
         fuelType: input?.fuelType ?? '',
         image: input?.image ?? 'https://placehold.co/400x240/1a1a2e/eee?text=Car',
         description: input?.description ?? '',
+        lengthMm: input?.lengthMm != null && input.lengthMm !== '' ? Number(input.lengthMm) : undefined,
+        widthMm: input?.widthMm != null && input.widthMm !== '' ? Number(input.widthMm) : undefined,
+        heightMm: input?.heightMm != null && input.heightMm !== '' ? Number(input.heightMm) : undefined,
     };
     writeAll([next, ...all]);
     return next;

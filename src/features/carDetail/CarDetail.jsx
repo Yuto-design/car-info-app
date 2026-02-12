@@ -1,0 +1,74 @@
+import { useParams, Link } from 'react-router-dom';
+import { getCarById } from '../../data/cars';
+import Button from '../../components/Button';
+import SpecTable from './SpecTable';
+import './CarDetail.css';
+
+function CarDetail() {
+  const { id } = useParams();
+  const car = getCarById(id);
+
+  if (!car) {
+    return (
+      <div className="car-detail car-detail--not-found">
+        <p className="car-detail-not-found-message">指定の車種が見つかりません。</p>
+        <Button as={Link} to="/list" variant="primary">車一覧へ戻る</Button>
+      </div>
+    );
+  }
+
+  const hasLength = car.lengthMm != null && car.lengthMm > 0;
+  const hasWidth = car.widthMm != null && car.widthMm > 0;
+  const hasHeight = car.heightMm != null && car.heightMm > 0;
+  const sizeValue =
+    hasLength && hasWidth && hasHeight
+      ? `${Number(car.lengthMm).toLocaleString()}×${Number(car.widthMm).toLocaleString()}×${Number(car.heightMm).toLocaleString()} mm`
+      : [hasLength && `全長 ${Number(car.lengthMm).toLocaleString()}mm`, hasWidth && `全幅 ${Number(car.widthMm).toLocaleString()}mm`, hasHeight && `全高 ${Number(car.heightMm).toLocaleString()}mm`].filter(Boolean).join(' / ') || null;
+
+  const specItems = [
+    { label: 'メーカー', value: car.maker },
+    { label: '車名', value: car.name },
+    { label: 'セグメント', value: car.segment },
+    { label: 'ボディタイプ', value: car.bodyType },
+    { label: '燃料', value: car.fuelType },
+    { label: '価格帯', value: `${car.priceMin}〜${car.priceMax}万円` },
+    ...(sizeValue ? [{ label: '寸法（全長×全幅×全高）', value: sizeValue }] : []),
+  ];
+
+  return (
+    <div className="car-detail">
+      <div className="car-detail-back">
+        <Button as={Link} to="/list" variant="secondary">← 車一覧へ</Button>
+      </div>
+
+      <div className="car-detail-hero">
+        <div className="car-detail-image-wrap">
+          <img
+            src={car.image}
+            alt={car.name}
+            className="car-detail-image"
+          />
+        </div>
+        <div className="car-detail-head">
+          <h1 className="car-detail-title">{car.maker} {car.name}</h1>
+          <p className="car-detail-meta">{car.segment} / {car.fuelType}</p>
+          <p className="car-detail-price">価格目安: {car.priceMin}〜{car.priceMax}万円</p>
+        </div>
+      </div>
+
+      {car.description && (
+        <section className="car-detail-section">
+          <h2 className="car-detail-section-title">概要</h2>
+          <p className="car-detail-description">{car.description}</p>
+        </section>
+      )}
+
+      <section className="car-detail-section">
+        <h2 className="car-detail-section-title">スペック</h2>
+        <SpecTable items={specItems} />
+      </section>
+    </div>
+  );
+}
+
+export default CarDetail;

@@ -18,6 +18,9 @@ const emptyForm = {
   fuelType: '',
   priceMin: '',
   priceMax: '',
+  lengthMm: '',
+  widthMm: '',
+  heightMm: '',
   image: '',
   description: '',
 };
@@ -31,6 +34,9 @@ function normalizeFormToCarPatch(form) {
     fuelType: String(form.fuelType ?? '').trim(),
     priceMin: form.priceMin === '' ? 0 : Number(form.priceMin),
     priceMax: form.priceMax === '' ? 0 : Number(form.priceMax),
+    lengthMm: form.lengthMm !== '' && form.lengthMm != null ? Number(form.lengthMm) : undefined,
+    widthMm: form.widthMm !== '' && form.widthMm != null ? Number(form.widthMm) : undefined,
+    heightMm: form.heightMm !== '' && form.heightMm != null ? Number(form.heightMm) : undefined,
     image: String(form.image ?? '').trim(),
     description: String(form.description ?? '').trim(),
   };
@@ -59,6 +65,9 @@ function CarAdmin() {
       fuelType: car.fuelType ?? '',
       priceMin: car.priceMin ?? '',
       priceMax: car.priceMax ?? '',
+      lengthMm: car.lengthMm ?? '',
+      widthMm: car.widthMm ?? '',
+      heightMm: car.heightMm ?? '',
       image: car.image ?? '',
       description: car.description ?? '',
     });
@@ -157,6 +166,18 @@ function CarAdmin() {
             <label className="car-admin-label">
               <span className="car-admin-label-text">価格（最高・万円）</span>
               <input className="car-admin-input" type="number" min={0} value={form.priceMax} onChange={(e) => onChange('priceMax', e.target.value)} />
+            </label>
+            <label className="car-admin-label">
+              <span className="car-admin-label-text">全長（mm）</span>
+              <input className="car-admin-input" type="number" min={0} value={form.lengthMm} onChange={(e) => onChange('lengthMm', e.target.value)} placeholder="例: 4520" />
+            </label>
+            <label className="car-admin-label">
+              <span className="car-admin-label-text">全幅（mm）</span>
+              <input className="car-admin-input" type="number" min={0} value={form.widthMm} onChange={(e) => onChange('widthMm', e.target.value)} placeholder="例: 1780" />
+            </label>
+            <label className="car-admin-label">
+              <span className="car-admin-label-text">全高（mm）</span>
+              <input className="car-admin-input" type="number" min={0} value={form.heightMm} onChange={(e) => onChange('heightMm', e.target.value)} placeholder="例: 1470" />
             </label>
             <label className="car-admin-label car-admin-label--wide">
               <span className="car-admin-label-text">画像URL</span>
