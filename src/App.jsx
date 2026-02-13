@@ -5,6 +5,7 @@ import CarList from './features/carList/CarList';
 import CarAdmin from './features/admin/CarAdmin';
 import CarDetail from './features/carDetail/CarDetail';
 import Favorites from './features/favorites/Favorites';
+import Comparison from './features/comparison/Comparison';
 import './App.css';
 
 function AppContent() {
@@ -14,9 +15,11 @@ function AppContent() {
       ? '車一覧'
       : location.pathname === '/favorites'
         ? 'お気に入り'
-        : location.pathname.startsWith('/admin')
-          ? '車種登録'
-          : null;
+        : location.pathname === '/comparison'
+          ? '比較'
+          : location.pathname.startsWith('/admin')
+            ? '車種登録'
+            : null;
 
   return (
     <Layout title={title}>
@@ -25,6 +28,7 @@ function AppContent() {
         <Route path="/list" element={<CarList />} />
         <Route path="/car/:id" element={<CarDetail />} />
         <Route path="/favorites" element={<Favorites />} />
+        <Route path="/comparison" element={<Comparison />} />
         <Route path="/admin" element={<CarAdmin />} />
       </Routes>
     </Layout>

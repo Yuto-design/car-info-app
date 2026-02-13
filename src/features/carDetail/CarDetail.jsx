@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getCarBySlugOrId } from '../../data/cars';
 import { isFavorite, addFavorite, removeFavorite } from '../../data/favorites';
+import { isInComparison, addToComparison, removeFromComparison, canAddToComparison } from '../../data/comparison';
 import Button from '../../components/Button';
 import SpecTable from './SpecTable';
 import './CarDetail.css';
@@ -10,6 +11,8 @@ function CarDetail() {
   const { id: slugOrId } = useParams();
   const car = getCarBySlugOrId(slugOrId);
   const [favorited, setFavorited] = useState(() => car && isFavorite(car.id));
+  const [inComparison, setInComparison] = useState(() => car && isInComparison(car.id));
+  const canAddComparison = canAddToComparison();
 
   if (!car) {
     return (
@@ -75,6 +78,27 @@ function CarDetail() {
             <i className={favorited ? 'fa-solid fa-heart' : 'fa-regular fa-heart'} aria-hidden></i>
             {favorited ? 'お気に入りから外す' : 'お気に入りに追加'}
           </Button>
+          {(canAddComparison || inComparison) && (
+            <Button
+              type="button"
+              variant={inComparison ? 'secondary' : 'primary'}
+              className="car-detail-comparison"
+              onClick={() => {
+                if (inComparison) {
+                  removeFromComparison(car.id);
+                  setInComparison(false);
+                } else {
+                  addToComparison(car.id);
+                  setInComparison(true);
+                }
+              }}
+              aria-pressed={inComparison}
+              aria-label={inComparison ? '比較から外す' : '比較に追加'}
+            >
+              <i className={inComparison ? 'fa-solid fa-scale-balanced' : 'fa-regular fa-scale-balanced'} aria-hidden></i>
+              {inComparison ? '比較から外す' : '比較に追加'}
+            </Button>
+          )}
         </div>
       </div>
 
