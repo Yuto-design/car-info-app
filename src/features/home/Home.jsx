@@ -23,43 +23,42 @@ function Home() {
             車一覧を見る
           </Button>
         </div>
-        <div className="home-hero-visual" aria-hidden="true">
-          <span className="home-hero-icon">
-            <i className="fa-solid fa-car-on"></i>
-          </span>
-        </div>
-      </section>
-
-      <section className="home-quick">
-        <h3 className="home-section-title">Menu</h3>
-        <div className="home-quick-grid">
-          <Card as={Link} to="/list" className="card--link home-quick-card">
-            <span className="home-quick-icon">
-                <i className="fa-solid fa-list"></i>
+        <div className="home-hero-visual">
+          <div className="home-hero-icon-wrap" aria-hidden="true">
+            <span className="home-hero-icon-orb" />
+            <span className="home-hero-icon">
+              <i className="fa-solid fa-car-on"></i>
             </span>
-            <div>
-              <strong className="card-title">Car List</strong>
-              <p className="card-meta">条件で絞り込んで車種を探す</p>
-            </div>
-          </Card>
-          <Card as={Link} to="/favorites" className="card--link home-quick-card">
-            <span className="home-quick-icon">
+          </div>
+          <div className="home-hero-connector" aria-hidden="true">
+            <svg className="home-hero-connector-svg" viewBox="0 0 24 320" preserveAspectRatio="none">
+              <line x1="0" y1="160" x2="24" y2="52" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
+              <line x1="0" y1="160" x2="24" y2="160" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
+              <line x1="0" y1="160" x2="24" y2="268" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
+            </svg>
+          </div>
+          <div className="home-hero-sub-icons">
+            <Link to="/list" className="home-hero-sub-icon home-hero-sub-icon--list" title="車一覧">
+              <i className="fa-solid fa-list"></i>
+            </Link>
+            <Link to="/favorites" className="home-hero-sub-icon home-hero-sub-icon--favorites" title="お気に入り">
               <i className="fa-solid fa-heart"></i>
-            </span>
-            <div>
-              <strong className="card-title">Favorite</strong>
-              <p className="card-meta">気になる車を保存して比較</p>
-            </div>
-          </Card>
-          <Card as={Link} to="/comparison" className="card--link home-quick-card">
-            <span className="home-quick-icon">
+            </Link>
+            <Link to="/comparison" className="home-hero-sub-icon home-hero-sub-icon--comparison" title="比較">
               <i className="fa-solid fa-scale-balanced"></i>
-            </span>
-            <div>
-              <strong className="card-title">Comparison</strong>
-              <p className="card-meta">複数車種を並べてスペック比較</p>
-            </div>
-          </Card>
+            </Link>
+          </div>
+          <div className="home-hero-visual-desc">
+            <p className="home-hero-visual-desc-item">
+              <strong>車一覧</strong>：条件で絞り込んで車種を探す
+            </p>
+            <p className="home-hero-visual-desc-item">
+              <strong>お気に入り</strong>：気になる車を保存して比較
+            </p>
+            <p className="home-hero-visual-desc-item">
+              <strong>比較</strong>：複数車種を並べてスペック比較
+            </p>
+          </div>
         </div>
       </section>
 

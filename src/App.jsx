@@ -12,13 +12,13 @@ function AppContent() {
   const location = useLocation();
   const title =
     location.pathname === '/list'
-      ? '車一覧'
+      ? 'Car List'
       : location.pathname === '/favorites'
-        ? 'お気に入り'
+        ? 'Favorite'
         : location.pathname === '/comparison'
-          ? '比較'
+          ? 'Comparison'
           : location.pathname.startsWith('/admin')
-            ? '車種登録'
+            ? 'Car Registration'
             : null;
 
   return (
