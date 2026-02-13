@@ -55,6 +55,14 @@
   color: var(--color-accent, #e85d04);
 }
 
+.car-detail-favorite {
+  margin-top: 1rem;
+}
+
+.car-detail-favorite i {
+  margin-right: 0.35rem;
+}
+
 .car-detail-section {
   margin-bottom: 1.5rem;
 }

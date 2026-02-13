@@ -4,6 +4,7 @@ import Home from './features/home/Home';
 import CarList from './features/carList/CarList';
 import CarAdmin from './features/admin/CarAdmin';
 import CarDetail from './features/carDetail/CarDetail';
+import Favorites from './features/favorites/Favorites';
 import './App.css';
 
 function AppContent() {
@@ -11,9 +12,11 @@ function AppContent() {
   const title =
     location.pathname === '/list'
       ? '車一覧'
-      : location.pathname.startsWith('/admin')
-        ? '車種登録'
-        : null;
+      : location.pathname === '/favorites'
+        ? 'お気に入り'
+        : location.pathname.startsWith('/admin')
+          ? '車種登録'
+          : null;
 
   return (
     <Layout title={title}>
@@ -21,6 +24,7 @@ function AppContent() {
         <Route path="/" element={<Home />} />
         <Route path="/list" element={<CarList />} />
         <Route path="/car/:id" element={<CarDetail />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="/admin" element={<CarAdmin />} />
       </Routes>
     </Layout>

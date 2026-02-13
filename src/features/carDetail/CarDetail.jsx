@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getCarBySlugOrId } from '../../data/cars';
+import { isFavorite, addFavorite, removeFavorite } from '../../data/favorites';
 import Button from '../../components/Button';
 import SpecTable from './SpecTable';
 import './CarDetail.css';
@@ -7,6 +9,7 @@ import './CarDetail.css';
 function CarDetail() {
   const { id: slugOrId } = useParams();
   const car = getCarBySlugOrId(slugOrId);
+  const [favorited, setFavorited] = useState(() => car && isFavorite(car.id));
 
   if (!car) {
     return (
@@ -53,6 +56,25 @@ function CarDetail() {
           <h1 className="car-detail-title">{car.maker} {car.name}</h1>
           <p className="car-detail-meta">{car.segment} / {car.fuelType}</p>
           <p className="car-detail-price">価格目安: {car.priceMin}〜{car.priceMax}万円</p>
+          <Button
+            type="button"
+            variant={favorited ? 'secondary' : 'primary'}
+            className="car-detail-favorite"
+            onClick={() => {
+              if (favorited) {
+                removeFavorite(car.id);
+                setFavorited(false);
+              } else {
+                addFavorite(car.id);
+                setFavorited(true);
+              }
+            }}
+            aria-pressed={favorited}
+            aria-label={favorited ? 'お気に入りから外す' : 'お気に入りに追加'}
+          >
+            <i className={favorited ? 'fa-solid fa-heart' : 'fa-regular fa-heart'} aria-hidden></i>
+            {favorited ? 'お気に入りから外す' : 'お気に入りに追加'}
+          </Button>
         </div>
       </div>
 
