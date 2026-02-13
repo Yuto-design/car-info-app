@@ -1,18 +1,16 @@
 /**
  * 車リストをフィルタ条件で絞り込む
  * @param {Array} cars - 車データの配列
- * @param {{ segment?: string, maker?: string, fuelType?: string, priceMin?: number, priceMax?: number }} filters - フィルタ条件
+ * @param {{ segment?: string, maker?: string, fuelType?: string }} filters - フィルタ条件
  * @returns {Array} 絞り込み後の車配列
  */
 export function filterCars(cars, filters = {}) {
-  const { segment, maker, fuelType, priceMin, priceMax } = filters;
+  const { segment, maker, fuelType } = filters;
 
   return cars.filter((car) => {
     if (segment && car.segment !== segment) return false;
     if (maker && car.maker !== maker) return false;
     if (fuelType && car.fuelType !== fuelType) return false;
-    if (priceMin != null && car.priceMax < priceMin) return false;
-    if (priceMax != null && car.priceMin > priceMax) return false;
     return true;
   });
 }

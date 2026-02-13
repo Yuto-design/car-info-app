@@ -14,13 +14,20 @@ const emptyForm = {
   name: '',
   maker: '',
   segment: '',
-  bodyType: '',
   fuelType: '',
-  priceMin: '',
-  priceMax: '',
+  driveType: '',
+  price: '',
   lengthMm: '',
   widthMm: '',
   heightMm: '',
+  weightKg: '',
+  wheelbaseMm: '',
+  minTurningRadiusM: '',
+  maxPowerPs: '',
+  maxPowerKw: '',
+  maxTorqueNm: '',
+  displacementL: '',
+  fuelConsumption: '',
   image: '',
   description: '',
 };
@@ -30,13 +37,20 @@ function normalizeFormToCarPatch(form) {
     name: String(form.name ?? '').trim(),
     maker: String(form.maker ?? '').trim(),
     segment: String(form.segment ?? '').trim(),
-    bodyType: String(form.bodyType ?? '').trim(),
     fuelType: String(form.fuelType ?? '').trim(),
-    priceMin: form.priceMin === '' ? 0 : Number(form.priceMin),
-    priceMax: form.priceMax === '' ? 0 : Number(form.priceMax),
+    driveType: form.driveType !== '' && form.driveType != null ? String(form.driveType).trim() : undefined,
+    price: form.price !== '' && form.price != null ? Number(form.price) : undefined,
     lengthMm: form.lengthMm !== '' && form.lengthMm != null ? Number(form.lengthMm) : undefined,
     widthMm: form.widthMm !== '' && form.widthMm != null ? Number(form.widthMm) : undefined,
     heightMm: form.heightMm !== '' && form.heightMm != null ? Number(form.heightMm) : undefined,
+    weightKg: form.weightKg !== '' && form.weightKg != null ? Number(form.weightKg) : undefined,
+    wheelbaseMm: form.wheelbaseMm !== '' && form.wheelbaseMm != null ? Number(form.wheelbaseMm) : undefined,
+    minTurningRadiusM: form.minTurningRadiusM !== '' && form.minTurningRadiusM != null ? Number(form.minTurningRadiusM) : undefined,
+    maxPowerPs: form.maxPowerPs !== '' && form.maxPowerPs != null ? Number(form.maxPowerPs) : undefined,
+    maxPowerKw: form.maxPowerKw !== '' && form.maxPowerKw != null ? Number(form.maxPowerKw) : undefined,
+    maxTorqueNm: form.maxTorqueNm !== '' && form.maxTorqueNm != null ? Number(form.maxTorqueNm) : undefined,
+    displacementL: form.displacementL !== '' && form.displacementL != null ? Number(form.displacementL) : undefined,
+    fuelConsumption: form.fuelConsumption != null && String(form.fuelConsumption).trim() !== '' ? String(form.fuelConsumption).trim() : undefined,
     image: String(form.image ?? '').trim(),
     description: String(form.description ?? '').trim(),
   };
@@ -61,13 +75,20 @@ function CarAdmin() {
       name: car.name ?? '',
       maker: car.maker ?? '',
       segment: car.segment ?? '',
-      bodyType: car.bodyType ?? '',
       fuelType: car.fuelType ?? '',
-      priceMin: car.priceMin ?? '',
-      priceMax: car.priceMax ?? '',
+      driveType: car.driveType ?? '',
+      price: car.price ?? '',
       lengthMm: car.lengthMm ?? '',
       widthMm: car.widthMm ?? '',
       heightMm: car.heightMm ?? '',
+      weightKg: car.weightKg ?? '',
+      wheelbaseMm: car.wheelbaseMm ?? '',
+      minTurningRadiusM: car.minTurningRadiusM ?? '',
+      maxPowerPs: car.maxPowerPs ?? '',
+      maxPowerKw: car.maxPowerKw ?? '',
+      maxTorqueNm: car.maxTorqueNm ?? '',
+      displacementL: car.displacementL ?? '',
+      fuelConsumption: car.fuelConsumption ?? '',
       image: car.image ?? '',
       description: car.description ?? '',
     });
@@ -150,20 +171,21 @@ function CarAdmin() {
               <input className="car-admin-input" value={form.segment} onChange={(e) => onChange('segment', e.target.value)} placeholder="例: コンパクト / SUV" />
             </label>
             <label className="car-admin-label">
-              <span className="car-admin-label-text">ボディタイプ</span>
-              <input className="car-admin-input" value={form.bodyType} onChange={(e) => onChange('bodyType', e.target.value)} placeholder="例: ハッチバック" />
-            </label>
-            <label className="car-admin-label">
               <span className="car-admin-label-text">燃料</span>
               <input className="car-admin-input" value={form.fuelType} onChange={(e) => onChange('fuelType', e.target.value)} placeholder="例: ガソリン / ハイブリッド" />
             </label>
             <label className="car-admin-label">
-              <span className="car-admin-label-text">価格（最低・万円）</span>
-              <input className="car-admin-input" type="number" min={0} value={form.priceMin} onChange={(e) => onChange('priceMin', e.target.value)} />
+              <span className="car-admin-label-text">駆動方式</span>
+              <select className="car-admin-input" value={form.driveType} onChange={(e) => onChange('driveType', e.target.value)}>
+                <option value="">—</option>
+                <option value="FF">FF（前輪駆動）</option>
+                <option value="FR">FR（後輪駆動）</option>
+                <option value="4WD">4WD（四輪駆動）</option>
+              </select>
             </label>
             <label className="car-admin-label">
-              <span className="car-admin-label-text">価格（最高・万円）</span>
-              <input className="car-admin-input" type="number" min={0} value={form.priceMax} onChange={(e) => onChange('priceMax', e.target.value)} />
+              <span className="car-admin-label-text">価格（万円）</span>
+              <input className="car-admin-input" type="number" min={0} value={form.price} onChange={(e) => onChange('price', e.target.value)} placeholder="例: 300" />
             </label>
             <label className="car-admin-label">
               <span className="car-admin-label-text">全長（mm）</span>
@@ -176,6 +198,38 @@ function CarAdmin() {
             <label className="car-admin-label">
               <span className="car-admin-label-text">全高（mm）</span>
               <input className="car-admin-input" type="number" min={0} value={form.heightMm} onChange={(e) => onChange('heightMm', e.target.value)} placeholder="例: 1470" />
+            </label>
+            <label className="car-admin-label">
+              <span className="car-admin-label-text">車両重量（kg）</span>
+              <input className="car-admin-input" type="number" min={0} value={form.weightKg} onChange={(e) => onChange('weightKg', e.target.value)} placeholder="例: 1420" />
+            </label>
+            <label className="car-admin-label">
+              <span className="car-admin-label-text">ホイールベース（mm）</span>
+              <input className="car-admin-input" type="number" min={0} value={form.wheelbaseMm} onChange={(e) => onChange('wheelbaseMm', e.target.value)} placeholder="例: 2700" />
+            </label>
+            <label className="car-admin-label">
+              <span className="car-admin-label-text">最小回転半径（m）</span>
+              <input className="car-admin-input" type="number" min={0} step="0.1" value={form.minTurningRadiusM} onChange={(e) => onChange('minTurningRadiusM', e.target.value)} placeholder="例: 5.2" />
+            </label>
+            <label className="car-admin-label">
+              <span className="car-admin-label-text">最高出力（PS）</span>
+              <input className="car-admin-input" type="number" min={0} value={form.maxPowerPs} onChange={(e) => onChange('maxPowerPs', e.target.value)} placeholder="例: 122" />
+            </label>
+            <label className="car-admin-label">
+              <span className="car-admin-label-text">最高出力（kW）</span>
+              <input className="car-admin-input" type="number" min={0} step="0.1" value={form.maxPowerKw} onChange={(e) => onChange('maxPowerKw', e.target.value)} placeholder="例: 90" />
+            </label>
+            <label className="car-admin-label">
+              <span className="car-admin-label-text">最大トルク（N・m）</span>
+              <input className="car-admin-input" type="number" min={0} value={form.maxTorqueNm} onChange={(e) => onChange('maxTorqueNm', e.target.value)} placeholder="例: 142" />
+            </label>
+            <label className="car-admin-label">
+              <span className="car-admin-label-text">排気量（L）</span>
+              <input className="car-admin-input" type="number" min={0} step="0.1" value={form.displacementL} onChange={(e) => onChange('displacementL', e.target.value)} placeholder="例: 1.8" />
+            </label>
+            <label className="car-admin-label">
+              <span className="car-admin-label-text">燃費（燃料消費率）</span>
+              <input className="car-admin-input" value={form.fuelConsumption} onChange={(e) => onChange('fuelConsumption', e.target.value)} placeholder="例: 20.0km/L" />
             </label>
             <label className="car-admin-label car-admin-label--wide">
               <span className="car-admin-label-text">画像URL</span>
@@ -203,7 +257,7 @@ function CarAdmin() {
             <div key={car.id} className="car-admin-row">
               <div className="car-admin-row-main">
                 <strong className="car-admin-row-title">{car.maker} {car.name}</strong>
-                <span className="car-admin-row-meta">{car.segment} / {car.fuelType} / {car.priceMin}〜{car.priceMax}万円</span>
+                <span className="car-admin-row-meta">{car.segment} / {car.fuelType} / {car.price != null && car.price > 0 ? `${Number(car.price).toLocaleString()}万円` : '—'}</span>
               </div>
               <div className="car-admin-row-actions">
                 <Button type="button" variant="secondary" onClick={() => startEdit(car)}>編集</Button>

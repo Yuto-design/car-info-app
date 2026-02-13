@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getCarBySlugOrId } from '../../data/cars';
 import { isFavorite, addFavorite, removeFavorite } from '../../data/favorites';
-import { isInComparison, addToComparison, removeFromComparison, canAddToComparison } from '../../data/comparison';
 import Button from '../../components/Button';
 import SpecTable from './SpecTable';
 import './CarDetail.css';
@@ -11,8 +10,6 @@ function CarDetail() {
   const { id: slugOrId } = useParams();
   const car = getCarBySlugOrId(slugOrId);
   const [favorited, setFavorited] = useState(() => car && isFavorite(car.id));
-  const [inComparison, setInComparison] = useState(() => car && isInComparison(car.id));
-  const canAddComparison = canAddToComparison();
 
   if (!car) {
     return (
@@ -31,14 +28,23 @@ function CarDetail() {
       ? `${Number(car.lengthMm).toLocaleString()}×${Number(car.widthMm).toLocaleString()}×${Number(car.heightMm).toLocaleString()} mm`
       : [hasLength && `全長 ${Number(car.lengthMm).toLocaleString()}mm`, hasWidth && `全幅 ${Number(car.widthMm).toLocaleString()}mm`, hasHeight && `全高 ${Number(car.heightMm).toLocaleString()}mm`].filter(Boolean).join(' / ') || null;
 
+  const maxPowerValue = [car.maxPowerPs != null && car.maxPowerPs > 0 && `${car.maxPowerPs}PS`, car.maxPowerKw != null && car.maxPowerKw > 0 && `${car.maxPowerKw}kW`].filter(Boolean).join(' / ') || null;
+
   const specItems = [
     { label: 'メーカー', value: car.maker },
     { label: '車名', value: car.name },
     { label: 'セグメント', value: car.segment },
-    { label: 'ボディタイプ', value: car.bodyType },
     { label: '燃料', value: car.fuelType },
-    { label: '価格帯', value: `${car.priceMin}〜${car.priceMax}万円` },
+    { label: '駆動方式', value: car.driveType },
+    ...(car.price != null && car.price > 0 ? [{ label: '価格', value: `${Number(car.price).toLocaleString()}万円` }] : []),
     ...(sizeValue ? [{ label: '寸法（全長×全幅×全高）', value: sizeValue }] : []),
+    ...(car.weightKg != null && car.weightKg > 0 ? [{ label: '車両重量', value: `${Number(car.weightKg).toLocaleString()}kg` }] : []),
+    ...(car.wheelbaseMm != null && car.wheelbaseMm > 0 ? [{ label: 'ホイールベース', value: `${Number(car.wheelbaseMm).toLocaleString()}mm` }] : []),
+    ...(car.minTurningRadiusM != null && car.minTurningRadiusM > 0 ? [{ label: '最小回転半径', value: `${car.minTurningRadiusM}m` }] : []),
+    ...(maxPowerValue ? [{ label: '最高出力（PS/kW）', value: maxPowerValue }] : []),
+    ...(car.maxTorqueNm != null && car.maxTorqueNm > 0 ? [{ label: '最大トルク（N・m）', value: `${car.maxTorqueNm}N・m` }] : []),
+    ...(car.displacementL != null && car.displacementL > 0 ? [{ label: '排気量（L）', value: `${car.displacementL}L` }] : []),
+    ...(car.fuelConsumption ? [{ label: '燃費（燃料消費率）', value: car.fuelConsumption }] : []),
   ];
 
   return (
@@ -58,7 +64,9 @@ function CarDetail() {
         <div className="car-detail-head">
           <h1 className="car-detail-title">{car.maker} {car.name}</h1>
           <p className="car-detail-meta">{car.segment} / {car.fuelType}</p>
-          <p className="car-detail-price">価格目安: {car.priceMin}〜{car.priceMax}万円</p>
+          {car.price != null && car.price > 0 && (
+          <p className="car-detail-price">価格: {Number(car.price).toLocaleString()}万円</p>
+        )}
           <Button
             type="button"
             variant={favorited ? 'secondary' : 'primary'}
@@ -78,27 +86,6 @@ function CarDetail() {
             <i className={favorited ? 'fa-solid fa-heart' : 'fa-regular fa-heart'} aria-hidden></i>
             {favorited ? 'お気に入りから外す' : 'お気に入りに追加'}
           </Button>
-          {(canAddComparison || inComparison) && (
-            <Button
-              type="button"
-              variant={inComparison ? 'secondary' : 'primary'}
-              className="car-detail-comparison"
-              onClick={() => {
-                if (inComparison) {
-                  removeFromComparison(car.id);
-                  setInComparison(false);
-                } else {
-                  addToComparison(car.id);
-                  setInComparison(true);
-                }
-              }}
-              aria-pressed={inComparison}
-              aria-label={inComparison ? '比較から外す' : '比較に追加'}
-            >
-              <i className={inComparison ? 'fa-solid fa-scale-balanced' : 'fa-regular fa-scale-balanced'} aria-hidden></i>
-              {inComparison ? '比較から外す' : '比較に追加'}
-            </Button>
-          )}
         </div>
       </div>
 

@@ -8,6 +8,117 @@
   color: var(--color-text-muted, #a0a0a0);
 }
 
+.comparison-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 280px) 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.comparison-sidebar {
+  position: sticky;
+  top: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  background: var(--color-card-bg, rgba(255, 255, 255, 0.04));
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.08));
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+}
+
+.comparison-sidebar-title {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text, #f5f5f5);
+}
+
+.comparison-sidebar-empty {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-muted, #a0a0a0);
+}
+
+.comparison-car-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.comparison-car-list-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--color-border, rgba(255, 255, 255, 0.06));
+}
+
+.comparison-car-list-item:last-child {
+  border-bottom: none;
+}
+
+.comparison-car-list-link {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 0.95rem;
+  color: var(--color-text, #f5f5f5);
+  text-decoration: none;
+  display: block;
+}
+
+.comparison-car-list-link:hover {
+  color: var(--color-accent, #e85d04);
+  text-decoration: underline;
+}
+
+.comparison-car-maker {
+  display: block;
+  font-size: 0.8em;
+  color: var(--color-text-muted, #a0a0a0);
+  margin-bottom: 0.15rem;
+}
+
+.comparison-car-name {
+  display: block;
+  font-weight: 600;
+}
+
+.comparison-car-list-actions {
+  display: flex;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.comparison-add,
+.comparison-remove-inline {
+  font-size: 0.8rem;
+  padding: 0.35rem 0.6rem;
+}
+
+.comparison-add i,
+.comparison-remove-inline i {
+  margin-right: 0.25rem;
+}
+
+.comparison-main {
+  min-width: 0;
+}
+
+.comparison-empty--inline {
+  margin-top: 0;
+  padding: 2rem 1.5rem;
+}
+
+@media (max-width: 720px) {
+  .comparison-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-sidebar {
+    position: static;
+  }
+}
+
 .comparison-count {
   margin: 0 0 1.25rem;
   font-size: 0.9rem;
@@ -76,14 +187,22 @@
 }
 
 .comparison-car-link {
-  font-weight: 600;
   color: var(--color-text, #f5f5f5);
   text-decoration: none;
+  display: block;
 }
 
 .comparison-car-link:hover {
   color: var(--color-accent, #e85d04);
   text-decoration: underline;
+}
+
+.comparison-car-link .comparison-car-maker {
+  font-weight: 500;
+}
+
+.comparison-car-link .comparison-car-name {
+  font-weight: 600;
 }
 
 .comparison-remove {

@@ -5,8 +5,6 @@ const LABELS = {
   segment: 'セグメント',
   maker: 'メーカー',
   fuelType: '燃料',
-  priceMin: '価格（最低）',
-  priceMax: '価格（最高）',
 };
 
 function CarListFilters({ cars, filters, onChange }) {
@@ -19,7 +17,7 @@ function CarListFilters({ cars, filters, onChange }) {
     if (value === '' || value == null) {
       delete next[key];
     } else {
-      next[key] = key === 'priceMin' || key === 'priceMax' ? Number(value) : value;
+      next[key] = value;
     }
     onChange(next);
   };
@@ -72,30 +70,6 @@ function CarListFilters({ cars, filters, onChange }) {
               <option key={f} value={f}>{f}</option>
             ))}
           </select>
-        </label>
-        <label className="car-list-filters-label">
-          <span className="car-list-filters-label-text">{LABELS.priceMin}</span>
-          <input
-            type="number"
-            className="car-list-filters-input"
-            placeholder="万円"
-            min={0}
-            value={filters.priceMin ?? ''}
-            onChange={(e) => handleChange('priceMin', e.target.value === '' ? null : e.target.value)}
-            aria-label={LABELS.priceMin}
-          />
-        </label>
-        <label className="car-list-filters-label">
-          <span className="car-list-filters-label-text">{LABELS.priceMax}</span>
-          <input
-            type="number"
-            className="car-list-filters-input"
-            placeholder="万円"
-            min={0}
-            value={filters.priceMax ?? ''}
-            onChange={(e) => handleChange('priceMax', e.target.value === '' ? null : e.target.value)}
-            aria-label={LABELS.priceMax}
-          />
         </label>
       </div>
       {hasActiveFilters && (

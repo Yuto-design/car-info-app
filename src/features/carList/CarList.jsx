@@ -46,7 +46,9 @@ function CarList() {
               <h3 className="card-title">{car.maker} {car.name}</h3>
               <p className="card-meta">{car.segment} / {car.fuelType}</p>
               <p className="card-description">{car.description}</p>
-              <p className="card-price">価格目安: {car.priceMin}〜{car.priceMax}万円</p>
+              {car.price != null && car.price > 0 && (
+              <p className="card-price">価格: {Number(car.price).toLocaleString()}万円</p>
+            )}
             </div>
           </Card>
         ))}

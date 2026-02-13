@@ -10,10 +10,17 @@ function getSpecRows(cars) {
     { key: 'maker', label: 'メーカー' },
     { key: 'name', label: '車名' },
     { key: 'segment', label: 'セグメント' },
-    { key: 'bodyType', label: 'ボディタイプ' },
     { key: 'fuelType', label: '燃料' },
-    { key: 'price', label: '価格帯' },
+    { key: 'driveType', label: '駆動方式' },
+    { key: 'price', label: '価格' },
     { key: 'size', label: '寸法（全長×全幅×全高）' },
+    { key: 'weightKg', label: '車両重量' },
+    { key: 'wheelbaseMm', label: 'ホイールベース' },
+    { key: 'minTurningRadiusM', label: '最小回転半径' },
+    { key: 'maxPower', label: '最高出力（PS/kW）' },
+    { key: 'maxTorqueNm', label: '最大トルク（N・m）' },
+    { key: 'displacementL', label: '排気量（L）' },
+    { key: 'fuelConsumption', label: '燃費（燃料消費率）' },
     { key: 'description', label: '概要' },
   ];
   return labels.map(({ key, label, isImage }) => ({
@@ -21,7 +28,7 @@ function getSpecRows(cars) {
     label,
     isImage: !!isImage,
     values: cars.map((car) => {
-      if (key === 'price') return car ? `${car.priceMin}〜${car.priceMax}万円` : '—';
+      if (key === 'price') return car?.price != null && car.price > 0 ? `${Number(car.price).toLocaleString()}万円` : '—';
       if (key === 'size') {
         if (!car || (car.lengthMm == null && car.widthMm == null && car.heightMm == null)) return '—';
         const parts = [];
@@ -30,6 +37,18 @@ function getSpecRows(cars) {
         if (car.heightMm != null) parts.push(`全高 ${Number(car.heightMm).toLocaleString()}mm`);
         return parts.join(' / ');
       }
+      if (key === 'weightKg') return car?.weightKg != null && car.weightKg > 0 ? `${Number(car.weightKg).toLocaleString()}kg` : '—';
+      if (key === 'wheelbaseMm') return car?.wheelbaseMm != null && car.wheelbaseMm > 0 ? `${Number(car.wheelbaseMm).toLocaleString()}mm` : '—';
+      if (key === 'minTurningRadiusM') return car?.minTurningRadiusM != null && car.minTurningRadiusM > 0 ? `${car.minTurningRadiusM}m` : '—';
+      if (key === 'maxPower') {
+        if (!car) return '—';
+        const ps = car.maxPowerPs != null && car.maxPowerPs > 0 ? `${car.maxPowerPs}PS` : '';
+        const kw = car.maxPowerKw != null && car.maxPowerKw > 0 ? `${car.maxPowerKw}kW` : '';
+        return [ps, kw].filter(Boolean).join(' / ') || '—';
+      }
+      if (key === 'maxTorqueNm') return car?.maxTorqueNm != null && car.maxTorqueNm > 0 ? `${car.maxTorqueNm}N・m` : '—';
+      if (key === 'displacementL') return car?.displacementL != null && car.displacementL > 0 ? `${car.displacementL}L` : '—';
+      if (key === 'fuelConsumption') return car?.fuelConsumption ? String(car.fuelConsumption) : '—';
       const v = car?.[key];
       return v != null && v !== '' ? String(v) : '—';
     }),
@@ -51,7 +70,8 @@ function ComparisonTable({ cars, onRemove }) {
               <th key={car.id} className="comparison-table-car-cell" scope="col">
                 <div className="comparison-car-header">
                   <Link to={`/car/${car.slug || car.id}`} className="comparison-car-link">
-                    {car.maker} {car.name}
+                    <span className="comparison-car-maker">{car.maker}</span>
+                    <span className="comparison-car-name">{car.name}</span>
                   </Link>
                   <Button
                     type="button"
