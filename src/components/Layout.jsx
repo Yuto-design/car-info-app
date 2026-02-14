@@ -35,6 +35,7 @@ function Layout({ children, title }) {
           <Link to="/admin" className={`layout-nav-link ${isActive('/admin') ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>Car Registration</Link>
           <Link to="/favorites" className={`layout-nav-link ${isActive('/favorites') ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>Favorite</Link>
           <Link to="/comparison" className={`layout-nav-link ${isActive('/comparison') ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>Comparison</Link>
+          <Link to="/manufacturers" className={`layout-nav-link ${isActive('/manufacturers') ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>Maker Official Site</Link>
         </nav>
       </header>
       {menuOpen && (
