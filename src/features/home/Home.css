@@ -55,26 +55,6 @@
   min-height: 400px;
 }
 
-.home-featured {
-  margin-bottom: 1rem;
-}
-
-.home-featured-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.25rem;
-  margin-top: 1rem;
-}
-
-.home-featured-actions {
-  margin-top: 1.5rem;
-  text-align: center;
-}
-
-.home-featured-actions .btn {
-  min-width: 200px;
-}
-
 @media (max-width: 768px) {
   .home-quick-grid {
     grid-template-columns: 1fr;
