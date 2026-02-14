@@ -55,11 +55,13 @@ function CarDetail() {
 
       <div className="car-detail-hero">
         <div className="car-detail-image-wrap">
-          <img
-            src={car.image}
-            alt={car.name}
-            className="car-detail-image"
-          />
+          {car.image ? (
+            <img src={car.image} alt={car.name} className="car-detail-image" />
+          ) : (
+            <div className="car-detail-image car-detail-image--placeholder" aria-hidden="true">
+              <span>{car.maker} {car.name}</span>
+            </div>
+          )}
         </div>
         <div className="car-detail-head">
           <h1 className="car-detail-title">{car.maker} {car.name}</h1>

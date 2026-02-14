@@ -106,7 +106,9 @@ function ComparisonTable({ cars, onRemove }) {
                         />
                       </Link>
                     ) : (
-                      '—'
+                      <span className="comparison-car-image-placeholder">
+                        {cars[i] ? `${cars[i].maker} ${cars[i].name}` : '—'}
+                      </span>
                     )
                   ) : (
                     value

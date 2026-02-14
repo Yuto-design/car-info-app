@@ -37,11 +37,13 @@ function CarList() {
       <div className="car-list-grid">
         {filteredCars.map((car) => (
           <Card key={car.id} as={Link} to={`/car/${car.slug || car.id}`} className="card--car">
-            <img
-              src={car.image}
-              alt={car.name}
-              className="card-image"
-            />
+            {car.image ? (
+              <img src={car.image} alt={car.name} className="card-image" />
+            ) : (
+              <div className="card-image card-image--placeholder" aria-hidden="true">
+                <span>{car.maker} {car.name}</span>
+              </div>
+            )}
             <div className="card-body">
               <h3 className="card-title">{car.maker} {car.name}</h3>
               <p className="card-meta">{car.segment} / {car.fuelType}</p>

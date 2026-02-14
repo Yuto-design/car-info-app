@@ -76,7 +76,7 @@ export function addCar(input) {
         segment: input?.segment ?? '',
         price: input?.price != null && input.price !== '' ? Number(input.price) : undefined,
         fuelType: input?.fuelType ?? '',
-        image: input?.image ?? 'https://placehold.co/400x240/1a1a2e/eee?text=Car',
+        image: input?.image != null && String(input.image).trim() !== '' ? String(input.image).trim() : undefined,
         description: input?.description ?? '',
         lengthMm: input?.lengthMm != null && input.lengthMm !== '' ? Number(input.lengthMm) : undefined,
         widthMm: input?.widthMm != null && input.widthMm !== '' ? Number(input.widthMm) : undefined,

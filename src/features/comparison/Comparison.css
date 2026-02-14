@@ -240,6 +240,21 @@
   opacity: 0.9;
 }
 
+.comparison-car-image-placeholder {
+  display: inline-block;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #a0a0a0);
+  background: var(--color-bg-alt, #1a1a1e);
+  border-radius: 8px;
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.08));
+  max-width: 200px;
+  text-align: center;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
 .comparison-empty {
   margin-top: 2rem;
   padding: 2.5rem 1.5rem;
