@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
 
-function FavoritesGrid({ cars, onRemove }) {
+function FavoritesGrid({ cars, onRemove, isPrintView }) {
   return (
     <>
       <p className="favorites-count" aria-live="polite">
@@ -10,7 +10,12 @@ function FavoritesGrid({ cars, onRemove }) {
       </p>
       <div className="favorites-grid">
         {cars.map((car) => (
-          <Card key={car.id} as={Link} to={`/car/${car.slug || car.id}`} className="card--car favorites-card">
+          <Card
+            key={car.id}
+            as={isPrintView ? 'div' : Link}
+            to={isPrintView ? undefined : `/car/${car.slug || car.id}`}
+            className="card--car favorites-card"
+          >
             {car.image ? (
               <img src={car.image} alt={car.name} className="card-image" />
             ) : (
@@ -25,16 +30,18 @@ function FavoritesGrid({ cars, onRemove }) {
               {car.price != null && car.price > 0 && (
                 <p className="card-price">価格: {Number(car.price).toLocaleString()}万円</p>
               )}
-              <Button
-                type="button"
-                variant="secondary"
-                className="favorites-remove"
-                onClick={(e) => onRemove(e, car.id)}
-                aria-label={`${car.maker} ${car.name}をお気に入りから外す`}
-              >
-                <i className="fa-solid fa-heart-crack" aria-hidden></i>
-                お気に入りから外す
-              </Button>
+              {!isPrintView && (
+                <Button
+                  type="button"
+                  variant="secondary"
+                  className="favorites-remove"
+                  onClick={(e) => onRemove(e, car.id)}
+                  aria-label={`${car.maker} ${car.name}をお気に入りから外す`}
+                >
+                  <i className="fa-solid fa-heart-crack" aria-hidden></i>
+                  お気に入りから外す
+                </Button>
+              )}
             </div>
           </Card>
         ))}

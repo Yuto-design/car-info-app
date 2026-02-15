@@ -6,12 +6,14 @@ import {
   addToComparison,
   removeFromComparison,
 } from '../../data/comparison';
+import { downloadComparisonCsv } from './exportComparisonCsv';
 import Button from '../../components/Button';
 import ComparisonTable from './ComparisonTable';
 import './Comparison.css';
 
 function Comparison() {
   const [comparisonIds, setComparisonIds] = useState(() => getComparisonIds());
+  const [showPrintView, setShowPrintView] = useState(false);
 
   const allCars = getAllCars();
 
@@ -98,9 +100,31 @@ function Comparison() {
         <div className="comparison-main">
           {comparisonCars.length > 0 ? (
             <>
-              <p className="comparison-count" aria-live="polite">
-                {comparisonCars.length}台を比較中
-              </p>
+              <div className="comparison-actions">
+                <p className="comparison-count" aria-live="polite">
+                  {comparisonCars.length}台を比較中
+                </p>
+                <div className="comparison-actions-buttons">
+                  <button
+                    type="button"
+                    className="comparison-export-btn"
+                    onClick={() => downloadComparisonCsv(comparisonCars, '比較表')}
+                    aria-label="比較表をCSVファイルでダウンロード"
+                  >
+                    <i className="fa-solid fa-file-export" aria-hidden />
+                    比較をCSVでエクスポート
+                  </button>
+                  <button
+                    type="button"
+                    className="comparison-print-view-btn"
+                    onClick={() => setShowPrintView(true)}
+                    aria-label="比較表を印刷用レイアウトで表示"
+                  >
+                    <i className="fa-solid fa-print" aria-hidden />
+                    印刷用レイアウトで表示
+                  </button>
+                </div>
+              </div>
               <ComparisonTable cars={comparisonCars} onRemove={handleRemove} />
             </>
           ) : (
@@ -112,6 +136,26 @@ function Comparison() {
               <p className="comparison-empty-hint">
                 左の一覧から「追加」で比較する車を選んでください。（最大4台）
               </p>
+            </div>
+          )}
+          {showPrintView && comparisonCars.length > 0 && (
+            <div className="comparison-print-overlay" role="dialog" aria-modal="true" aria-label="比較表・印刷用レイアウト">
+              <div className="comparison-print-layout">
+                <h2 className="comparison-print-title">比較表</h2>
+                <div className="comparison-print-table-wrap">
+                  <ComparisonTable cars={comparisonCars} onRemove={() => {}} isPrintView />
+                </div>
+                <div className="comparison-print-actions">
+                  <Button type="button" variant="primary" onClick={() => window.print()} aria-label="印刷する">
+                    <i className="fa-solid fa-print" aria-hidden />
+                    印刷
+                  </Button>
+                  <Button type="button" variant="secondary" onClick={() => setShowPrintView(false)} aria-label="閉じる">
+                    <i className="fa-solid fa-xmark" aria-hidden />
+                    閉じる
+                  </Button>
+                </div>
+              </div>
             </div>
           )}
         </div>

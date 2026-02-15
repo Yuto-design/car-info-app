@@ -55,7 +55,7 @@ function getSpecRows(cars) {
   }));
 }
 
-function ComparisonTable({ cars, onRemove }) {
+function ComparisonTable({ cars, onRemove, isPrintView }) {
   const specRows = useMemo(() => getSpecRows(cars), [cars]);
 
   return (
@@ -69,20 +69,29 @@ function ComparisonTable({ cars, onRemove }) {
             {cars.map((car) => (
               <th key={car.id} className="comparison-table-car-cell" scope="col">
                 <div className="comparison-car-header">
-                  <Link to={`/car/${car.slug || car.id}`} className="comparison-car-link">
-                    <span className="comparison-car-maker">{car.maker}</span>
-                    <span className="comparison-car-name">{car.name}</span>
-                  </Link>
-                  <Button
-                    type="button"
-                    variant="secondary"
-                    className="comparison-remove"
-                    onClick={(e) => onRemove(e, car.id)}
-                    aria-label={`${car.maker} ${car.name}を比較から外す`}
-                  >
-                    <i className="fa-solid fa-xmark" aria-hidden></i>
-                    外す
-                  </Button>
+                  {isPrintView ? (
+                    <>
+                      <span className="comparison-car-maker">{car.maker}</span>
+                      <span className="comparison-car-name">{car.name}</span>
+                    </>
+                  ) : (
+                    <Link to={`/car/${car.slug || car.id}`} className="comparison-car-link">
+                      <span className="comparison-car-maker">{car.maker}</span>
+                      <span className="comparison-car-name">{car.name}</span>
+                    </Link>
+                  )}
+                  {!isPrintView && (
+                    <Button
+                      type="button"
+                      variant="secondary"
+                      className="comparison-remove"
+                      onClick={(e) => onRemove(e, car.id)}
+                      aria-label={`${car.maker} ${car.name}を比較から外す`}
+                    >
+                      <i className="fa-solid fa-xmark" aria-hidden></i>
+                      外す
+                    </Button>
+                  )}
                 </div>
               </th>
             ))}
@@ -98,13 +107,21 @@ function ComparisonTable({ cars, onRemove }) {
                 <td key={cars[i]?.id ?? i} className="comparison-table-value-cell">
                   {row.isImage ? (
                     cars[i]?.image ? (
-                      <Link to={`/car/${cars[i].slug || cars[i].id}`}>
+                      isPrintView ? (
                         <img
                           src={cars[i].image}
                           alt={cars[i].name}
                           className="comparison-car-image"
                         />
-                      </Link>
+                      ) : (
+                        <Link to={`/car/${cars[i].slug || cars[i].id}`}>
+                          <img
+                            src={cars[i].image}
+                            alt={cars[i].name}
+                            className="comparison-car-image"
+                          />
+                        </Link>
+                      )
                     ) : (
                       <span className="comparison-car-image-placeholder">
                         {cars[i] ? `${cars[i].maker} ${cars[i].name}` : '—'}
