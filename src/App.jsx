@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './features/home/Home';
 import CarList from './features/carList/CarList';
-import CarAdmin from './features/admin/CarAdmin';
+import CarAdminRegister from './features/admin/CarAdminRegister';
+import CarAdminCars from './features/admin/CarAdminCars';
 import CarDetail from './features/carDetail/CarDetail';
 import Favorites from './features/favorites/Favorites';
 import Comparison from './features/comparison/Comparison';
@@ -20,9 +21,11 @@ function AppContent() {
           ? 'Comparison'
           : location.pathname === '/manufacturers'
             ? 'Maker Official Site'
-            : location.pathname.startsWith('/admin')
-              ? 'Car Registration'
-              : null;
+            : location.pathname === '/admin/register'
+              ? '車登録'
+              : location.pathname === '/admin/cars'
+                ? '登録車の編集・削除'
+                : null;
 
   return (
     <Layout title={title}>
@@ -33,7 +36,8 @@ function AppContent() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/comparison" element={<Comparison />} />
         <Route path="/manufacturers" element={<ManufacturerLinks />} />
-        <Route path="/admin" element={<CarAdmin />} />
+        <Route path="/admin/register" element={<CarAdminRegister />} />
+        <Route path="/admin/cars" element={<CarAdminCars />} />
       </Routes>
     </Layout>
   );

@@ -32,7 +32,6 @@ function Layout({ children, title }) {
         <nav className={`layout-nav ${menuOpen ? 'layout-nav--open' : ''}`} aria-hidden={!menuOpen}>
           <Link to="/" className={`layout-nav-link ${isActive('/') && location.pathname === '/' ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>Home</Link>
           <Link to="/list" className={`layout-nav-link ${isActive('/list') ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>Car List</Link>
-          <Link to="/admin" className={`layout-nav-link ${isActive('/admin') ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>Car Registration</Link>
           <Link to="/favorites" className={`layout-nav-link ${isActive('/favorites') ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>Favorite</Link>
           <Link to="/comparison" className={`layout-nav-link ${isActive('/comparison') ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>Comparison</Link>
           <Link to="/manufacturers" className={`layout-nav-link ${isActive('/manufacturers') ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>Maker Official Site</Link>

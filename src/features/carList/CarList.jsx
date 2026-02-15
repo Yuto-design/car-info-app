@@ -1,20 +1,12 @@
-import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { getAllCars } from '../../data/cars';
-import { filterCars } from './carListUtils';
+import { useCarListFilters } from './useCarListFilters';
 import CarListFilters from './CarListFilters';
 import CarListGrid from './CarListGrid';
 import Button from '../../components/Button';
 import './CarList.css';
 
 function CarList() {
-  const allCars = useMemo(() => getAllCars(), []);
-  const [filters, setFilters] = useState({});
-
-  const filteredCars = useMemo(
-    () => filterCars(allCars, filters),
-    [allCars, filters]
-  );
+  const { allCars, filters, setFilters, filteredCars } = useCarListFilters();
 
   return (
     <div className="car-list">
@@ -22,8 +14,11 @@ function CarList() {
         条件で絞り込んで車種を探せます。
       </p>
       <div className="car-list-top-actions">
-        <Button as={Link} to="/admin" variant="secondary">
-          車種を手入力で追加する
+        <Button as={Link} to="/admin/register" variant="secondary">
+          車を登録
+        </Button>
+        <Button as={Link} to="/admin/cars" variant="secondary">
+          登録車の編集・削除
         </Button>
       </div>
       <CarListFilters
