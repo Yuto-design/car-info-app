@@ -61,7 +61,7 @@ function HomeHeroIcons() {
           </span>
           <div className="home-hero-sub-icon-branch">
             <div className="home-hero-sub-icon-cell">
-              <div className="home-hero-sub-icon home-hero-sub-icon--export" title="お気に入りをエクスポート">
+              <div className="home-hero-sub-icon home-hero-sub-icon--export-favorites" title="お気に入りをエクスポート">
                 <i className="fa-solid fa-file-export"></i>
               </div>
               <span className="home-hero-sub-icon-label">エクスポート</span>
@@ -74,6 +74,19 @@ function HomeHeroIcons() {
               <i className="fa-solid fa-scale-balanced"></i>
             </Link>
             <span className="home-hero-sub-icon-label">比較</span>
+          </div>
+          <span className="home-hero-sub-icon-connector home-hero-sub-icon-connector--branch" aria-hidden="true">
+            <svg className="home-hero-sub-icon-connector-svg" viewBox="0 0 24 120" preserveAspectRatio="none">
+              <line x1="0" y1="50" x2="24" y2="50" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
+            </svg>
+          </span>
+          <div className="home-hero-sub-icon-branch">
+            <div className="home-hero-sub-icon-cell">
+              <div className="home-hero-sub-icon home-hero-sub-icon--export-comparison" title="比較をエクスポート">
+                <i className="fa-solid fa-file-export"></i>
+              </div>
+              <span className="home-hero-sub-icon-label">エクスポート</span>
+            </div>
           </div>
         </div>
         <div className="home-hero-sub-icon-item">
