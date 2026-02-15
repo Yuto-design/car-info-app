@@ -1,4 +1,5 @@
 import { useFavorites } from './useFavorites';
+import { downloadCsv } from './exportFavoritesCsv';
 import FavoritesEmpty from './FavoritesEmpty';
 import FavoritesGrid from './FavoritesGrid';
 import './Favorites.css';
@@ -12,7 +13,20 @@ function Favorites() {
         お気に入りに登録した車種一覧です。詳細から解除できます。
       </p>
       {favoriteCars.length > 0 ? (
-        <FavoritesGrid cars={favoriteCars} onRemove={removeFavorite} />
+        <>
+          <div className="favorites-actions">
+            <button
+              type="button"
+              className="favorites-export-btn"
+              onClick={() => downloadCsv(favoriteCars)}
+              aria-label="お気に入り一覧をCSVでダウンロード"
+            >
+              <i className="fa-solid fa-file-export" aria-hidden />
+              CSVでエクスポート
+            </button>
+          </div>
+          <FavoritesGrid cars={favoriteCars} onRemove={removeFavorite} />
+        </>
       ) : (
         <FavoritesEmpty />
       )}

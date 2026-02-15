@@ -13,7 +13,7 @@ function HomeHeroIcons() {
       <div className="home-hero-connector" aria-hidden="true">
         <svg className="home-hero-connector-svg" viewBox="0 0 24 520" preserveAspectRatio="none">
           <line x1="-10" y1="260" x2="24" y2="50" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
-          <line x1="-10" y1="260" x2="24" y2="260" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
+          <line x1="-10" y1="260" x2="24" y2="250" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
           <line x1="-10" y1="260" x2="24" y2="390" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
           <line x1="-10" y1="260" x2="24" y2="520" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
         </svg>
@@ -47,12 +47,25 @@ function HomeHeroIcons() {
             </div>
           </div>
         </div>
-        <div className="home-hero-sub-icon-item">
+        <div className="home-hero-sub-icon-item home-hero-sub-icon-item--favorites-branch">
           <div className="home-hero-sub-icon-cell">
             <Link to="/favorites" className="home-hero-sub-icon home-hero-sub-icon--favorites" title="お気に入り">
               <i className="fa-solid fa-heart"></i>
             </Link>
             <span className="home-hero-sub-icon-label">お気に入り</span>
+          </div>
+          <span className="home-hero-sub-icon-connector home-hero-sub-icon-connector--branch" aria-hidden="true">
+            <svg className="home-hero-sub-icon-connector-svg" viewBox="0 0 24 120" preserveAspectRatio="none">
+              <line x1="0" y1="50" x2="24" y2="50" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
+            </svg>
+          </span>
+          <div className="home-hero-sub-icon-branch">
+            <div className="home-hero-sub-icon-cell">
+              <div className="home-hero-sub-icon home-hero-sub-icon--export" title="お気に入りをエクスポート">
+                <i className="fa-solid fa-file-export"></i>
+              </div>
+              <span className="home-hero-sub-icon-label">エクスポート</span>
+            </div>
           </div>
         </div>
         <div className="home-hero-sub-icon-item">
