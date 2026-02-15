@@ -12,10 +12,10 @@ function HomeHeroIcons() {
       </div>
       <div className="home-hero-connector" aria-hidden="true">
         <svg className="home-hero-connector-svg" viewBox="0 0 24 520" preserveAspectRatio="none">
-          <line x1="0" y1="260" x2="24" y2="50" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
-          <line x1="0" y1="260" x2="24" y2="260" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
-          <line x1="0" y1="260" x2="24" y2="390" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
-          <line x1="0" y1="260" x2="24" y2="520" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
+          <line x1="-10" y1="260" x2="24" y2="50" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
+          <line x1="-10" y1="260" x2="24" y2="260" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
+          <line x1="-10" y1="260" x2="24" y2="390" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
+          <line x1="-10" y1="260" x2="24" y2="520" stroke="rgba(255,255,255,0.18)" strokeWidth="1" />
         </svg>
       </div>
       <div className="home-hero-sub-icons">
