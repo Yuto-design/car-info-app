@@ -34,6 +34,7 @@ function Layout({ children, title }) {
           <Link to="/list" className={`layout-nav-link ${isActive('/list') ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>Car List</Link>
           <Link to="/favorites" className={`layout-nav-link ${isActive('/favorites') ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>Favorite</Link>
           <Link to="/comparison" className={`layout-nav-link ${isActive('/comparison') ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>Comparison</Link>
+          <Link to="/my-garage" className={`layout-nav-link ${isActive('/my-garage') ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>マイガレージ</Link>
           <Link to="/manufacturers" className={`layout-nav-link ${isActive('/manufacturers') ? 'layout-nav-link--active' : ''}`} onClick={closeMenu}>Maker Official Site</Link>
         </nav>
       </header>

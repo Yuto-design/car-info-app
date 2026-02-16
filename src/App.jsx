@@ -7,6 +7,7 @@ import CarAdminCars from './features/admin/CarAdminCars';
 import CarDetail from './features/carDetail/CarDetail';
 import Favorites from './features/favorites/Favorites';
 import Comparison from './features/comparison/Comparison';
+import MyGarage from './features/myGarage/MyGarage';
 import ManufacturerLinks from './features/manufacturerLinks/ManufacturerLinks';
 import './App.css';
 
@@ -19,7 +20,9 @@ function AppContent() {
         ? 'Favorite'
         : location.pathname === '/comparison'
           ? 'Comparison'
-          : location.pathname === '/manufacturers'
+          : location.pathname === '/my-garage'
+            ? 'マイガレージ'
+            : location.pathname === '/manufacturers'
             ? 'Maker Official Site'
             : location.pathname === '/admin/register'
               ? '車登録'
@@ -35,6 +38,7 @@ function AppContent() {
         <Route path="/car/:id" element={<CarDetail />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/comparison" element={<Comparison />} />
+        <Route path="/my-garage" element={<MyGarage />} />
         <Route path="/manufacturers" element={<ManufacturerLinks />} />
         <Route path="/admin/register" element={<CarAdminRegister />} />
         <Route path="/admin/cars" element={<CarAdminCars />} />

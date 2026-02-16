@@ -1,0 +1,197 @@
+.my-garage {
+  padding-bottom: 2rem;
+}
+
+.my-garage-intro {
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+  color: var(--color-text-muted, #a0a0a0);
+}
+
+.my-garage-empty {
+  margin-top: 2rem;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  background: var(--color-card-bg, rgba(255, 255, 255, 0.04));
+  border-radius: 16px;
+  border: 1px dashed var(--color-border, rgba(255, 255, 255, 0.12));
+}
+
+.my-garage-empty-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin-bottom: 1rem;
+  font-size: 2.25rem;
+  color: var(--color-text-muted, #a0a0a0);
+  opacity: 0.8;
+}
+
+.my-garage-empty-title {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text, #f5f5f5);
+}
+
+.my-garage-empty-text {
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+  color: var(--color-text-muted, #a0a0a0);
+}
+
+.my-garage-empty-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.my-garage-empty-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.my-garage-empty-actions a i {
+  font-size: 1.1rem;
+}
+
+/* ダッシュボード（2カラム） */
+.my-garage-dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.my-garage-section {
+  padding: 1.25rem;
+  border-radius: 16px;
+  background: var(--color-card-bg, rgba(255, 255, 255, 0.04));
+  border: 1px solid var(--color-border, rgba(255, 255, 255, 0.08));
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
+.my-garage-section-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.my-garage-section-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-text, #f5f5f5);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.my-garage-section-title i {
+  font-size: 1.15rem;
+  color: #f472b6;
+}
+
+.my-garage-section:last-child .my-garage-section-title i {
+  color: #60a5fa;
+}
+
+.my-garage-section-count {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-muted, #a0a0a0);
+}
+
+/* お気に入りプレビューカード */
+.my-garage-preview-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.my-garage-card.card--car .card-body {
+  padding: 0.6rem 0.5rem 0.5rem;
+}
+
+.my-garage-card .card-title {
+  font-size: 0.9rem;
+  margin: 0 0 0.2rem;
+}
+
+.my-garage-card .card-meta {
+  font-size: 0.75rem;
+  margin: 0;
+  color: var(--color-text-muted, #a0a0a0);
+}
+
+.my-garage-card .card-image {
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+}
+
+.my-garage-card .card-image--placeholder {
+  font-size: 0.7rem;
+  padding: 0.5rem;
+}
+
+.my-garage-more {
+  margin: 0 0 1rem;
+  font-size: 0.85rem;
+  color: var(--color-text-muted, #a0a0a0);
+}
+
+/* 比較リスト（テキストリンク） */
+.my-garage-comparison-list {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.my-garage-comparison-list li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--color-border, rgba(255, 255, 255, 0.06));
+}
+
+.my-garage-comparison-list li:last-child {
+  border-bottom: none;
+}
+
+.my-garage-comparison-link {
+  font-size: 0.95rem;
+  color: var(--color-text, #f5f5f5);
+  text-decoration: none;
+}
+
+.my-garage-comparison-link:hover {
+  color: var(--color-accent, #60a5fa);
+  text-decoration: underline;
+}
+
+/* セクション内の空状態 */
+.my-garage-section-empty {
+  margin-bottom: 1rem;
+}
+
+.my-garage-section-empty p {
+  margin: 0 0 0.75rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted, #a0a0a0);
+}
+
+.my-garage-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.my-garage-cta i {
+  font-size: 0.95rem;
+}
