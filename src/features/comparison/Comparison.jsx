@@ -9,7 +9,7 @@ import {
 import { downloadComparisonCsv } from './exportComparisonCsv';
 import Button from '../../components/Button';
 import ComparisonTable from './ComparisonTable';
-import './Comparison.css';
+import '../styles/Comparison.css';
 
 function Comparison() {
   const [comparisonIds, setComparisonIds] = useState(() => getComparisonIds());

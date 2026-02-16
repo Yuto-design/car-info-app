@@ -3,7 +3,7 @@ import { useCarListFilters } from './useCarListFilters';
 import CarListFilters from './CarListFilters';
 import CarListGrid from './CarListGrid';
 import Button from '../../components/Button';
-import './CarList.css';
+import '../styles/CarList.css';
 
 function CarList() {
   const { allCars, filters, setFilters, filteredCars } = useCarListFilters();

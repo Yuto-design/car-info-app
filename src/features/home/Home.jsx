@@ -1,7 +1,7 @@
 import HomeHeroIcons from './HomeHeroIcons';
 import HomeSiteDescList from './HomeSiteDescList';
 import HomeFeatured from './HomeFeatured';
-import './Home.css';
+import '../styles/Home.css';
 
 function Home() {
   return (

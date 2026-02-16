@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { getFeaturedCars } from '../../data/cars';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
-import './HomeFeatured.css';
+import '../styles/HomeFeatured.css';
 
 function HomeFeatured() {
   const featuredCars = getFeaturedCars();

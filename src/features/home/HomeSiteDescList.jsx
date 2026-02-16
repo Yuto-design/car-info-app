@@ -1,4 +1,4 @@
-import './HomeSiteDescList.css';
+import '../styles/HomeSiteDescList.css';
 
 function HomeSiteDescList() {
   return (

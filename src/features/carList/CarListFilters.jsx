@@ -1,5 +1,5 @@
 import { getUniqueValues } from './carListUtils';
-import './CarListFilters.css';
+import '../styles/CarListFilters.css';
 
 const LABELS = {
   segment: 'セグメント',

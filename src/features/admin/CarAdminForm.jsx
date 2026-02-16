@@ -1,5 +1,5 @@
 import Button from '../../components/Button';
-import './CarAdmin.css';
+import '../styles/CarAdmin.css';
 
 export const emptyForm = {
   name: '',

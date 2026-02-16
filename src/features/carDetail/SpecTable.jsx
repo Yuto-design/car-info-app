@@ -1,4 +1,4 @@
-import './SpecTable.css';
+import '../styles/SpecTable.css';
 
 function SpecTable({ items }) {
   if (!items || items.length === 0) return null;

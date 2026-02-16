@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './HomeHeroIcons.css';
+import '../styles/HomeHeroIcons.css';
 
 const RADIUS = 200;
 const CX = 300;

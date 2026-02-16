@@ -4,7 +4,7 @@ import { getCarBySlugOrId } from '../../data/cars';
 import { isFavorite, addFavorite, removeFavorite } from '../../data/favorites';
 import Button from '../../components/Button';
 import SpecTable from './SpecTable';
-import './CarDetail.css';
+import '../styles/CarDetail.css';
 
 function CarDetail() {
   const { id: slugOrId } = useParams();

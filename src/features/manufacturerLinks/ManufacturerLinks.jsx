@@ -1,5 +1,5 @@
 import { getManufacturersByRegion } from '../../data/manufacturers';
-import './ManufacturerLinks.css';
+import '../styles/ManufacturerLinks.css';
 
 function ManufacturerLinks() {
   const { domestic, overseas } = getManufacturersByRegion();

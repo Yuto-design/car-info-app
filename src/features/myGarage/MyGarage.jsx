@@ -5,7 +5,7 @@ import { getFavoriteIds } from '../../data/favorites';
 import { getComparisonIds } from '../../data/comparison';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
-import './MyGarage.css';
+import '../styles/MyGarage.css';
 
 const FAVORITES_PREVIEW_COUNT = 3;
 

@@ -4,7 +4,7 @@ import { downloadCsv } from './exportFavoritesCsv';
 import Button from '../../components/Button';
 import FavoritesEmpty from './FavoritesEmpty';
 import FavoritesGrid from './FavoritesGrid';
-import './Favorites.css';
+import '../styles/Favorites.css';
 
 function Favorites() {
   const { favoriteCars, removeFavorite } = useFavorites();

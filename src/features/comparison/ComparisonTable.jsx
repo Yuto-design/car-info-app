@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
-import './Comparison.css';
+import '../styles/Comparison.css';
 
 function getSpecRows(cars) {
   if (!cars.length) return [];
