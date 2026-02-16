@@ -21,13 +21,13 @@ function AppContent() {
         : location.pathname === '/comparison'
           ? 'Comparison'
           : location.pathname === '/my-garage'
-            ? 'マイガレージ'
+            ? 'My Garage'
             : location.pathname === '/manufacturers'
             ? 'Maker Official Site'
             : location.pathname === '/admin/register'
-              ? '車登録'
+              ? 'Car Registration'
               : location.pathname === '/admin/cars'
-                ? '登録車の編集・削除'
+                ? 'Car Edit/Delete'
                 : null;
 
   return (
