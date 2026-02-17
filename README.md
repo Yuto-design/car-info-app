@@ -1,71 +1,84 @@
-# Getting Started with Create React App
+# Car Info App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+国内の人気車種のスペック・価格・燃費をまとめて比較できる Web アプリです。お気に入り登録や並べ比べで、欲しいクルマを選びやすくします。
 
-## Available Scripts
+## 主な機能
 
-In the project directory, you can run:
+- **ホーム** — サイト紹介とおすすめ車種の表示
+- **車種一覧** — フィルター・検索で車種を絞り込み
+- **車種詳細** — スペック・価格・燃費などの詳細情報
+- **お気に入り** — 気になる車を登録・一覧表示・CSV エクスポート
+- **比較** — 複数車種を並べて比較・CSV エクスポート
+- **マイガレージ** — 登録した車の管理
+- **メーカー公式サイト** — メーカー別リンク一覧
+- **管理画面** — 車種の登録・編集・削除（管理者向け）
 
-### `npm start`
+## 技術スタック
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React** 19.x
+- **React Router** 7.x
+- **Create React App**（react-scripts 5.x）
+- **Testing Library**（Jest / React Testing Library）
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 必要環境
 
-### `npm test`
+- Node.js（推奨: 18.x 以上）
+- npm
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## セットアップ
 
-### `npm run build`
+```bash
+# リポジトリをクローン
+git clone https://github.com/your-username/car-info-app.git
+cd car-info-app
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# 依存関係をインストール
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 利用可能なスクリプト
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| コマンド | 説明 |
+|----------|------|
+| `npm start` | 開発サーバーを起動（[http://localhost:3000](http://localhost:3000)） |
+| `npm test` | テストを実行（ウォッチモード） |
+| `npm run build` | 本番用ビルドを `build` に出力 |
+| `npm run eject` | CRA の設定をプロジェクトに展開（非推奨・取り消し不可） |
 
-### `npm run eject`
+## ルート一覧
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+| パス | 説明 |
+|------|------|
+| `/` | ホーム |
+| `/list` | 車種一覧 |
+| `/car/:id` | 車種詳細 |
+| `/favorites` | お気に入り |
+| `/comparison` | 比較 |
+| `/my-garage` | マイガレージ |
+| `/manufacturers` | メーカー公式サイト |
+| `/admin/register` | 車種登録（管理） |
+| `/admin/cars` | 車種編集・削除（管理） |
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## プロジェクト構成（抜粋）
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+src/
+├── App.jsx                 # ルーティング・レイアウト
+├── components/             # 共通コンポーネント（Layout, Card, Button）
+├── features/               # 機能別モジュール
+│   ├── home/               # ホーム
+│   ├── carList/            # 車種一覧
+│   ├── carDetail/          # 車種詳細
+│   ├── favorites/          # お気に入り
+│   ├── comparison/         # 比較
+│   ├── myGarage/           # マイガレージ
+│   ├── manufacturerLinks/  # メーカーリンク
+│   ├── admin/              # 管理（登録・編集・削除）
+│   └── styles/             # 機能別 CSS
+├── data/                   # 静的データ（cars, manufacturers 等）
+└── utils/                  # ユーティリティ（CSV エクスポート等）
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## ライセンス
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# car-info-app
+このプロジェクトはプライベートです。
