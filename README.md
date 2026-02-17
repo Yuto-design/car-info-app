@@ -59,24 +59,84 @@ npm install
 | `/admin/register` | 車種登録（管理） |
 | `/admin/cars` | 車種編集・削除（管理） |
 
-## プロジェクト構成（抜粋）
+## プロジェクト構成
 
 ```
-src/
-├── App.jsx                 # ルーティング・レイアウト
-├── components/             # 共通コンポーネント（Layout, Card, Button）
-├── features/               # 機能別モジュール
-│   ├── home/               # ホーム
-│   ├── carList/            # 車種一覧
-│   ├── carDetail/          # 車種詳細
-│   ├── favorites/          # お気に入り
-│   ├── comparison/         # 比較
-│   ├── myGarage/           # マイガレージ
-│   ├── manufacturerLinks/  # メーカーリンク
-│   ├── admin/              # 管理（登録・編集・削除）
-│   └── styles/             # 機能別 CSS
-├── data/                   # 静的データ（cars, manufacturers 等）
-└── utils/                  # ユーティリティ（CSV エクスポート等）
+car-info-app/
+├── README.md
+├── package.json
+├── package-lock.json
+├── public/
+│   ├── index.html
+│   └── manifest.json
+└── src/
+    ├── App.css
+    ├── App.jsx
+    ├── index.css
+    ├── index.js
+    ├── reportWebVitals.js
+    ├── components/
+    │   ├── Button.css
+    │   ├── Button.jsx
+    │   ├── Card.css
+    │   ├── Card.jsx
+    │   ├── Layout.css
+    │   └── Layout.jsx
+    ├── data/
+    │   ├── cars.js
+    │   ├── comparison.js
+    │   ├── favorites.js
+    │   └── manufacturers.js
+    ├── features/
+    │   ├── admin/
+    │   │   ├── CarAdminCars.jsx
+    │   │   ├── CarAdminForm.jsx
+    │   │   └── CarAdminRegister.jsx
+    │   ├── carDetail/
+    │   │   ├── CarDetail.jsx
+    │   │   └── SpecTable.jsx
+    │   ├── carList/
+    │   │   ├── CarList.jsx
+    │   │   ├── CarListFilters.jsx
+    │   │   ├── CarListGrid.jsx
+    │   │   ├── carListUtils.js
+    │   │   └── useCarListFilters.js
+    │   ├── comparison/
+    │   │   ├── Comparison.jsx
+    │   │   ├── ComparisonTable.jsx
+    │   │   └── exportComparisonCsv.js
+    │   ├── favorites/
+    │   │   ├── Favorites.jsx
+    │   │   ├── FavoritesEmpty.jsx
+    │   │   ├── FavoritesGrid.jsx
+    │   │   ├── FavoritesList.jsx
+    │   │   ├── exportFavoritesCsv.js
+    │   │   └── useFavorites.js
+    │   ├── home/
+    │   │   ├── Home.jsx
+    │   │   ├── HomeFeatured.jsx
+    │   │   ├── HomeHeroIcons.jsx
+    │   │   └── HomeSiteDescList.jsx
+    │   ├── manufacturerLinks/
+    │   │   └── ManufacturerLinks.jsx
+    │   ├── myGarage/
+    │   │   └── MyGarage.jsx
+    │   └── styles/
+    │       ├── CarAdmin.css
+    │       ├── CarDetail.css
+    │       ├── CarList.css
+    │       ├── CarListFilters.css
+    │       ├── Comparison.css
+    │       ├── Favorites.css
+    │       ├── Home.css
+    │       ├── HomeFeatured.css
+    │       ├── HomeHeroIcons.css
+    │       ├── HomeSiteDescList.css
+    │       ├── ManufacturerLinks.css
+    │       ├── MyGarage.css
+    │       └── SpecTable.css
+    └── utils/
+        └── exportCarsCsv.js
 ```
 
 ## ライセンス
